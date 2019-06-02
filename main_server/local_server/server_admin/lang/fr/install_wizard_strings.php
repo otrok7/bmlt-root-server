@@ -24,6 +24,8 @@
                                             'Database_Version_Error'        =>  'ERREUR: Vous devez avoir la version de PHP 5.6 ou superieur installe sur ce serveur!',
                                             'Database_PDO_Error'            =>  'ERREUR: Vous n\'avez pas installé PHP PDO!',
                                             'Database_Type_Error'           =>  'ERREUR: Vous n\'avez pas Installe PHP PDO!',
+        'Database_Type_MySQL_Error'     =>  'ERROR: Even though you have PDO and you have database drivers installed, none of the are MySQL (the only supported driver)!',
+ 
                                             'Database_TestButton_Text'      =>  'TEST',
                                             'Database_TestButton_Success'   =>  'La connexion de base de données a reussi.',
                                             'Database_TestButton_Fail'      =>  'La connexion de base de données a echoue:',
@@ -33,6 +35,10 @@
                                             'AJAX_Handler_DB_Established_Error' =>  'La base de données esists déjà, et a été mis en place! Vous ne pouvez pas utiliser cette configuration pour écraser une base existante!',
                                             'AJAX_Handler_DB_Incomplete_Error'  =>  'Il n\'y a pas assez d\'informations pour initialiser la base de données!',
                                             
+        'NoDatabase_Note_GenericError'  =>  'There is an error connecting to the database. Please check your database settings.',
+        'NoDatabase_Note_ClickHere'     =>  'Click here to go back to the database set up page.',
+        'NoDatabase_Note_ServerSettings_ClickHere' => 'Click here to go back to the server settings page.',
+        
                                             'NoDatabase_Note_AlreadySet'    =>  'Il existe déjà une base de données existante, de sorte que vous ne peut pas initialiser de nouveau.',
                                             'NoDatabase_Note_PasswordIssue' =>  'Vous devez créer un compte d\'administrateur du serveur avant que la base de données peut être initialisé.',
                                             'NoServerAdmin_Note_AlreadySet' =>  'Il existe déjà une base de données existante, donc vous ne pouvez pas configurer un compte d\'administrateur de serveur (Il en existe un déjà).',
@@ -61,7 +67,14 @@
                                             'Database_PW_Additional_Text'   =>  'Faite à ce qu\'il en soit vraiment sécuritaire.',
 
                                             'Maps_API_Key_Warning'          =>  'There is a problem with the Google Maps API Key.',
-                                            
+        'Maps_API_Key_Not_Set'          =>  'The Google Maps API key is not set.',
+        'Maps_API_Key_Valid'            =>  'Google Maps API Key is valid.',
+        'Maps_API_Key_ClickHere'        =>  'Click here to go back to the Google Maps API Key set up page.',
+        
+        'Page_2_API_Key_Prompt'         =>  'Enter the Google API Key for Geocoding:',
+        'Page_2_API_Key_Set_Button'     =>  'TEST KEY',
+        'Page_2_API_Key_Not_Set_Prompt' =>  'SET API KEY FIRST',
+        
                                             'Page_2_Tab'                    =>  'ÉTAPE 2: Localisation par défaut',
                                             'Page_2_Heading'                =>  'Regler la localisation innitiale pour les Réunions',
                                             'Page_2_Text'                   =>  'When saving a meeting, the BMLT Root Server uses the Google Maps API to determine the latitude and longitude for the meeting address. These settings are required to allow the BMLT Root Server to communicate with the Google Maps API.',
@@ -92,12 +105,25 @@
                                             'RegionBiasLabel'               =>  'Biais de région:',
                                             'PasswordLengthLabel'           =>  'Longueur Minimale de Mot de passe:',
                                             'PasswordLengthExtraText'       =>  'Cela affectera également le mot de passe de l\'administrateur du serveur, ci-dessus.',
+        'DefaultClosedStatus'           =>  'Meetings Are Considerd "CLOSED" by Default:',
+        'DefaultClosedStatusExtraText'  =>  'This primarily affects the export to NAWS.',
+        
                                             'DurationLabel'                 =>  'Durée par défaut de la réunion:',
                                             'DurationHourLabel'             =>  'Heures',
                                             'DurationMinutesLabel'          =>  'Minutes',
                                             'LanguageSelectorEnableLabel'   =>  'Display Language Selector On Login:',
                                             'LanguageSelectorEnableExtraText'   =>  'If you select this, a popup menu will appear in the login screen, so administrators can select their language.',
-                                            'EmailContactEnableLabel'       =>  'Allow Email Contacts From Meetings:',
+        'SemanticAdminLabel'            =>  'Enable Semantic Administration:',
+        'SemanticAdminExtraText'        =>  'If not checked, then all administration must be done via the Root Server login (No apps).',
+        'EmailContactAdminEnableLabel'      =>  'Include Service Body Administrator On These Emails:',
+        'EmailContactAdminEnableExtraText'  =>  'Sends copies of these emails to the Service Body Administrator (if they are not the primary recipient).',
+        'EmailContactAllAdminEnableLabel'       =>  'Include All Service Body Administrators On These Emails:',
+        'EmailContactAllAdminEnableExtraText'   =>  'Sends copies of these emails to all of the relevant Service Body Administrators.',
+        
+        'Page_4_Initialize_Root_Server_Heading' => 'Initialize the Root Server',
+        'Page_4_Initialize_Root_Server_Text'    => 'The button below will initialize the Root Server with an empty database and a Server Administrator user.',
+        'Page_4_Initialize_Root_Server_Button'  => 'Initialize Root Server',
+        'EmailContactEnableLabel'       =>  'Allow Email Contacts From Meetings:',
                                             'EmailContactEnableExtraText'   =>  'If you select this, site visitors will be able to send emails from meeting records.',
                                             
                                             'Page_4_Tab'                    =>  'Étape 4: Enregistrer les paramètres',
@@ -125,7 +151,9 @@
                                             'Explanatory_Text_1_DB_Intro'  =>  'La première chose que vous devez faire, c\'est de créer une nouvelle base de données vide, et un utilisateur de base de données qui a accès à cette base de données. Cela se fait habituellement par l\'intermédiaire de votre site Web Panneau de configuration. Une fois que vous avez créé la base de données, vous devez saisir les informations relatives à cette base de données dans les éléments de texte sur cette page.',
 
                                             'Explanatory_Text_2_Region_Bias_Intro'  =>  'The "Region Bias" is a code that is sent to Google when a location search is done, and can help Google to make sense of ambiguous search queries.',
-
+        'Explanatory_Text_2_API_key_Intro'      =>  'The "API Key" is a key that <a target="_blank" title="Follow this link to go to a page that discusses the Google API Key." href="https://bmlt.app/google-maps-api-keys-and-geolocation-issues/">you need to register with Google</a> in order to be able to use their mapping service.',
+        'Explanatory_Text_2_API_key_2_Intro'    =>  'You will need to provide a valid API Key in order to create new meetings in the Root Server.',
+        
                                             'Explanatory_Text_3_Server_Admin_Intro'  =>  'L\'administrateur du serveur est le principal utilisateur pour le serveur. Il est le seul compte qui peut créer de nouveaux utilisateurs et les organismes de service, et est très puissant. Vous devez créer un identifiant et un mot de passe non négligeable pour ce compte. Vous serez en mesure de modifier les autres aspects du compte sur le serveur principal, une fois la base de données a été mis en place.',
                                             'Explanatory_Text_3_Misc_Intro'  =>  'Ce sont les différents paramètres qui influent sur la façon dont le serveur racine se comporte et apparaît.',
                                             
@@ -134,4 +162,7 @@
                                             'Explanatory_Text_4_File_Extra'  =>  'Vous devez également vous assurer que les autorisations de fichiers sont limités (chmod 0644). Cela empêche le fichier d\'être écrite, et le serveur racine ne fonctionnera que si le fichier dispose des autorisations nécessaires.',
                                             'Page_4_PathInfo'               =>  'Le fichier doit être placé comme %s/auto-config.inc.php, ce qui est l\'endroit où le répertoire de votre %s est. Une fois le fichier a été créé et vous avez mis le texte ci-dessus dedans, vous devez exécuter la commande suivante pour vous assurer que les autorisations sont correctes:',
                                             'Page_4_Final'                  =>  'Une fois tout cela terminé, actualisez cette page, et vous devriez voir la page de connexion du serveur racine.',
-                                            );
+        'FormatLangNamesLabel'              =>  'Enter extra languages in format code1:name1 (example "fa:farsi ru:russian"):',
+        
+        
+    );

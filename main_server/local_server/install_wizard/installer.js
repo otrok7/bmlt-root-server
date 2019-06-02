@@ -401,6 +401,7 @@ function BMLTInstaller( in_prefs    ///< A JSON object with the initial prefs.
         uri += '&g_enable_email_contact=' + (this.m_installer_state.enable_email_contact ? 'TRUE' : 'FALSE');
         uri += '&include_service_body_admin_on_emails=' + (this.m_installer_state.send_copy_to_sba ? 'TRUE' : 'FALSE');
         uri += '&include_every_admin_on_emails=' + (this.m_installer_state.send_copy_to_all_admins ? 'TRUE' : 'FALSE');
+        uri += '&format_lang_names=' + encodeURIComponent(this.m_installer_state.format_lang_names);
         uri += '&time_format=' + this.m_installer_state.time_format.replace(/'/g,"\\'");
         uri += '&change_date_format=' + this.m_installer_state.change_date_format.replace(/'/g,"\\'");
         uri += '&admin_session_name=' + this.m_installer_state.admin_session_name.replace(/'/g,"\\'");
@@ -418,6 +419,7 @@ function BMLTInstaller( in_prefs    ///< A JSON object with the initial prefs.
     this.initializeRootServerCallback = function (   in_http_request
                                                 ) {
         this.m_ajax_request_in_progress = null;
+        console.log("resp="+in_http_request.responseText);
         if (in_http_request.responseText) {
             eval('var ret_val = ' + in_http_request.responseText + ';');
             
@@ -556,8 +558,23 @@ function BMLTInstaller( in_prefs    ///< A JSON object with the initial prefs.
         if (this.m_google_api_key_is_good === true && this.m_database_credentials_are_good === true && this.m_server_admin_password_is_good === true) {
             document.getElementById('database_install_stuff_div').className = '';
         }
+        
+        this.m_installer_state.format_lang_names = convertFormatLangsToJSON(document.getElementById('format_lang_names').value);
     };
-    
+    function convertFormatLangsToJSON(v) {
+    	var ret = {};
+    	var langs = v.split(' ');
+    	if (!Array.isArray(langs)) {
+    		return JSON.stringify(ret);
+    	}
+    	langs.forEach(function(lang) {
+    		var parts = lang.split(':');
+    		if (parts.length == 2) {    			
+    			ret[parts[0]] = parts[1];
+    		}
+    	});
+    	return JSON.stringify(ret);
+    }
     /************************************************************************************//**
     *   \brief  Creates the text for the file                                               *
     *   \returns    The PHP code for the auto-config.inc.php file.                          *
@@ -605,7 +622,9 @@ function BMLTInstaller( in_prefs    ///< A JSON object with the initial prefs.
             ret += "\t\t$include_every_admin_on_emails = " + (this.m_installer_state.send_copy_to_all_admins ? 'TRUE' : 'FALSE') + ";\t// If this is TRUE (or 1), then any emails sent using the meeting contact will include all Service Body Admin contacts";
             ret += "\n\t\t\t\t\t\t\t\t\t\t\t\t// (including the Server Administrator) for the meeting.";
             ret += "\n\t\t\t\t\t\t\t\t\t\t\t\t// (ignored, if $g_enable_email_contact or $include_service_body_admin_on_emails is FALSE)\n";
-            
+            ret += "\n\t\t\t\t\t\t\t\t\t\t\t\t// The server languages are supported by default, the langs specified here add to them";
+            ret += "\t\t$format_lang_names = " + this.m_installer_state.format_lang_names+";\t//";
+ 
             ret += "\n\t// These are 'hard-coded,' but can be changed later.\n";
 
             ret += "\n\t\t$time_format = '" + this.m_installer_state.time_format.replace(/'/g,"\\'") + "'; // The PHP date() format for the times displayed.\n";

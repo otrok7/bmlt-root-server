@@ -187,6 +187,10 @@ $default_lang = $lang;
                             <div class="right_left_aligned_div"><?php echo bmlt_create_lang_select(); ?></div>
                         </div>
                         <div class="one_line_div">
+                            <label class="left_right_aligned bold_char" for="format_lang_names"><?php echo htmlspecialchars($comdef_install_wizard_strings['FormatLangNamesLabel']); ?></label>
+                            <input class="text" id="format_lang_names" value="<?php echo bmlt_format_langs(); ?>">
+                        </div>
+                        <div class="one_line_div">
                             <label class="left_right_aligned bold_char" for="installer_pw_length_select"><?php echo htmlspecialchars($comdef_install_wizard_strings['PasswordLengthLabel']); ?></label>
                             <div class="right_left_aligned_div">
                                 <select onchange="g_installer_object.gatherInstallerState()" id="installer_pw_length_select">
@@ -482,7 +486,9 @@ function bmlt_create_lang_select()
         
     return $ret;
 }
-    
+function bmlt_format_langs() {
+    return '';
+}
 /*******************************************************************/
 /** \brief This is a callback to sort the server languages.
            The default server language will always be first, and
